@@ -1,0 +1,21 @@
+<div class="row">
+  <div class="col-4">
+    <button class="btn btn-primary" (click)="getAll_btnClick()">
+      Get All Member
+    </button>
+  </div>
+  <div class="col-4"></div>
+  <div class="col-4">
+    <button class="btn btn-primary" (click)="getSingle_btnClick()">
+      Get Single Member
+    </button>
+  </div>
+</div>
+<div class="row">
+  <div class="col-6">
+    {{ APIresult }}
+  </div>
+</div>
+<div class="row">
+  <a [routerLink]="'/Note'">跳轉至Note頁面</a>
+</div>
