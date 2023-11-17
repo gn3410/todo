@@ -8,7 +8,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MemberComponent implements OnInit {
   constructor(private http: HttpClient) { }
-  title = '第二次測試修改todo';
   APIresult = '';
   ngOnInit(): void {
 
