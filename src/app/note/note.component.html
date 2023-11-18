@@ -1,67 +1,82 @@
 <div class="row">
-  <div class="row">
-    <!-- 左側功能列 -->
-    <div
-      class="col-2 sidebar vh-100"
-      style="background-color: rgba(210, 180, 140, 0.752)"
-    >
-      <div class="row">
-        <div>
-          <button
-            class="btn mt-2"
-            style="outline: none"
-            (click)="getAll_btnClick()"
-          >
-            Get All Notes
-          </button>
-        </div>
-        <div>
-          <button
-            class="btn mt-2"
-            style="outline: none"
-            (click)="getSingle_btnClick()"
-          >
-            Get Single Note
-          </button>
-        </div>
+  <!-- ↓↓↓左側功能列↓↓↓ -->
+  <div
+    class="col-2 sidebar vh-100"
+    style="background-color: rgba(210, 180, 140, 0.752)"
+  >
+    <div class="row">
+      <div>
+        <button
+          class="btn mt-2"
+          style="outline: none"
+          (click)="getAll_btnClick()"
+        >
+          Get Note List
+        </button>
       </div>
     </div>
-    <!-- 左側功能列 -->
-    <!-- 主要視窗區 -->
-    <div class="col-10">
-      <div class="container-fluid">
-        <div class="row">
+  </div>
+  <!-- ↑↑↑左側功能列↑↑ -->
+  <!-- ↓↓↓主要視窗區↓↓↓ -->
+  <!--
+    這邊呈現使用ngFor進行自動讀取多筆資料組成table
+    以及使用ngIf進行table顯示與否之判斷
+  -->
+  <div class="col-10">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-8">
           <form [formGroup]="form">
-            <label>
-              <p>使用者名稱</p>
-              <input type="text" id="userName" formControlName="userName" />
-            </label>
-
-            <label>
-              <p>使用者電話</p>
-              <input type="text" id="tel" formControlName="tel" />
-            </label>
-
-            <label>
-              <p>使用者密碼</p>
-              <input type="text" id="pwd" formControlName="pwd" />
-            </label>
-            <div>
-              <button
-                class="btn btn-primary mt-2"
-                style="outline: none"
-                (click)="getForm()"
-              >
-                Get Form Value
-              </button>
+            <div class="row mt-2">
+              <div class="col-4" style="display: flex; align-items: center">
+                <span style="font-family: 微軟正黑體">
+                  Search Title Keyword：
+                </span>
+              </div>
+              <div class="col-4">
+                <input
+                  class="form-control"
+                  type="text"
+                  id="SearchTitle"
+                  formControlName="SearchTitle"
+                />
+              </div>
+              <div class="col-4">
+                <div>
+                  <button
+                    class="btn btn-primary"
+                    style="outline: none"
+                    (click)="getSingle_btnClick()"
+                  >
+                    Search Note
+                  </button>
+                </div>
+              </div>
             </div>
           </form>
-        </div>
-        <div class="col-6">
-          {{ APIresult }}
+
+          <table class="table" *ngIf="NoteList.length > 0">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">NoteTitle</th>
+                <th scope="col">NoteContext</th>
+                <th scope="col">NoteType</th>
+              </tr>
+            </thead>
+            <tbody>
+              <th></th>
+              <tr scope="col" *ngFor="let data of NoteList">
+                <th scope="row">{{ data["ID"] }}</th>
+                <td>{{ data["Title"] }}</td>
+                <td>{{ data["Context"] }}</td>
+                <td>{{ data["Type"] }}</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
-    <!-- 主要視窗區 -->
   </div>
+  <!-- ↑↑↑主要視窗區↑↑↑ -->
 </div>
