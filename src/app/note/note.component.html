@@ -1,18 +1,67 @@
 <div class="row">
-  <div class="col-4">
-    <button class="btn btn-primary" (click)="getAll_btnClick()">
-      Get All Notes
-    </button>
-  </div>
-  <div class="col-4"></div>
-  <div class="col-4">
-    <button class="btn btn-primary" (click)="getSingle_btnClick()">
-      Get Single Note
-    </button>
-  </div>
-</div>
-<div class="row">
-  <div class="col-6">
-    {{ APIresult }}
+  <div class="row">
+    <!-- 左側功能列 -->
+    <div
+      class="col-2 sidebar vh-100"
+      style="background-color: rgba(210, 180, 140, 0.752)"
+    >
+      <div class="row">
+        <div>
+          <button
+            class="btn mt-2"
+            style="outline: none"
+            (click)="getAll_btnClick()"
+          >
+            Get All Notes
+          </button>
+        </div>
+        <div>
+          <button
+            class="btn mt-2"
+            style="outline: none"
+            (click)="getSingle_btnClick()"
+          >
+            Get Single Note
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- 左側功能列 -->
+    <!-- 主要視窗區 -->
+    <div class="col-10">
+      <div class="container-fluid">
+        <div class="row">
+          <form [formGroup]="form">
+            <label>
+              <p>使用者名稱</p>
+              <input type="text" id="userName" formControlName="userName" />
+            </label>
+
+            <label>
+              <p>使用者電話</p>
+              <input type="text" id="tel" formControlName="tel" />
+            </label>
+
+            <label>
+              <p>使用者密碼</p>
+              <input type="text" id="pwd" formControlName="pwd" />
+            </label>
+            <div>
+              <button
+                class="btn btn-primary mt-2"
+                style="outline: none"
+                (click)="getForm()"
+              >
+                Get Form Value
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="col-6">
+          {{ APIresult }}
+        </div>
+      </div>
+    </div>
+    <!-- 主要視窗區 -->
   </div>
 </div>
