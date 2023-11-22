@@ -1,0 +1,62 @@
+<!-- ↓↓↓主要視窗區↓↓↓ -->
+<!--
+    這邊呈現使用ngFor進行自動讀取多筆資料組成table
+    以及使用ngIf進行table顯示與否之判斷
+  -->
+<div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-8">
+        <form [formGroup]="this.form">
+          <div class="row mt-2">
+            <div class="col-4" style="display: flex; align-items: center">
+              <span style="font-family: 微軟正黑體">
+                Search Title Keyword：
+              </span>
+            </div>
+            <div class="col-4">
+              <input
+                class="form-control"
+                type="text"
+                id="SearchTitle"
+                formControlName="SearchTitle"
+              />
+            </div>
+            <div class="col-4">
+              <div>
+                <button
+                  class="btn btn-primary"
+                  style="outline: none"
+                  (click)="this.getSingle_btnClick()"
+                >
+                  Search Note
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+
+        <table class="table" *ngIf="this.NoteList.length > 0">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">NoteTitle</th>
+              <th scope="col">NoteContext</th>
+              <th scope="col">NoteType</th>
+            </tr>
+          </thead>
+          <tbody>
+            <th></th>
+            <tr scope="col" *ngFor="let data of this.NoteList">
+              <th scope="row">{{ data["ID"] }}</th>
+              <td>{{ data["Title"] }}</td>
+              <td>{{ data["Context"] }}</td>
+              <td>{{ data["Type"] }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ↑↑↑主要視窗區↑↑↑ -->

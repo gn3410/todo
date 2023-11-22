@@ -1,82 +1,19 @@
+<!--
+   這邊是父層html，在這邊建構大方向的畫面column
+   並且配合子層Component中的selector作為標籤，顯示子層html
+   搭配input、output達成子父層傳遞參數
+   (NoteListEmit)="getNoteList($event)"  => 子層NoteListEmit(output)傳給父層，父層用getNoteList()接參數
+   [NoteList]="NoteList" => 子層NoteList(input)(左邊的NoteList)接收父層變數(右邊的NoteList)
+-->
 <div class="row">
-  <!-- ↓↓↓左側功能列↓↓↓ -->
-  <div
-    class="col-2 sidebar vh-100"
-    style="background-color: rgba(210, 180, 140, 0.752)"
-  >
-    <div class="row">
-      <div>
-        <button
-          class="btn mt-2"
-          style="outline: none"
-          (click)="getAll_btnClick()"
-        >
-          Get Note List
-        </button>
-      </div>
-    </div>
-  </div>
-  <!-- ↑↑↑左側功能列↑↑ -->
-  <!-- ↓↓↓主要視窗區↓↓↓ -->
-  <!--
-    這邊呈現使用ngFor進行自動讀取多筆資料組成table
-    以及使用ngIf進行table顯示與否之判斷
-  -->
-  <div class="col-10">
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-8">
-          <form [formGroup]="form">
-            <div class="row mt-2">
-              <div class="col-4" style="display: flex; align-items: center">
-                <span style="font-family: 微軟正黑體">
-                  Search Title Keyword：
-                </span>
-              </div>
-              <div class="col-4">
-                <input
-                  class="form-control"
-                  type="text"
-                  id="SearchTitle"
-                  formControlName="SearchTitle"
-                />
-              </div>
-              <div class="col-4">
-                <div>
-                  <button
-                    class="btn btn-primary"
-                    style="outline: none"
-                    (click)="getSingle_btnClick()"
-                  >
-                    Search Note
-                  </button>
-                </div>
-              </div>
-            </div>
-          </form>
-
-          <table class="table" *ngIf="NoteList.length > 0">
-            <thead>
-              <tr>
-                <th scope="col">ID</th>
-                <th scope="col">NoteTitle</th>
-                <th scope="col">NoteContext</th>
-                <th scope="col">NoteType</th>
-              </tr>
-            </thead>
-            <tbody>
-              <th></th>
-              <tr scope="col" *ngFor="let data of NoteList">
-                <th scope="row">{{ data["ID"] }}</th>
-                <td>{{ data["Title"] }}</td>
-                <td>{{ data["Context"] }}</td>
-                <td>{{ data["Type"] }}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-  <!-- ↑↑↑主要視窗區↑↑↑ -->
+  <app-sidebar
+    class="col-2"
+    (NoteListEmit)="getNoteList($event)"
+    [NoteList]="NoteList"
+  ></app-sidebar>
+  <app-content
+    class="col-10"
+    (NoteListEmit)="getNoteList($event)"
+    [NoteList]="NoteList"
+  ></app-content>
 </div>

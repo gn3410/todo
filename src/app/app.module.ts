@@ -7,9 +7,11 @@ import { MemberComponent } from './member/member.component';
 import { NoteComponent } from './note/note.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SidebarComponent } from './note/sidebar/sidebar.component';
+import { ContentComponent } from './note/content/content.component';
 
 @NgModule({
-  declarations: [AppComponent, MemberComponent, NoteComponent, HomeComponent],
+  declarations: [AppComponent, MemberComponent, NoteComponent, HomeComponent, SidebarComponent, ContentComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
